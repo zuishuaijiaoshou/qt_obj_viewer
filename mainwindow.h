@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QString>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,6 +20,7 @@ public:
 
 private:
     void CreateOpenFileTool();
+    void CreateOpenGlWidget(const QString& nm);
 
 private slots:
     void onToolClicked();
@@ -26,5 +28,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+
 };
 #endif // MAINWINDOW_H

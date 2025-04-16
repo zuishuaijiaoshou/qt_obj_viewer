@@ -1,13 +1,16 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <Qtoolbar>
-
+#include <QFileDialog>
+#include <QMessageBox>
+#include "openglwidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     CreateOpenFileTool();
 }
 
@@ -16,6 +19,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::CreateOpenGlWidget(const QString& file_nm) {
+    OpenGLWidget *openGLWidget = new OpenGLWidget(this, file_nm);
+    this->setCentralWidget(openGLWidget);
+
+    openGLWidget->RenderObjFile();
+}
 
 void MainWindow::CreateOpenFileTool() {
     // Create a toolbar
@@ -32,6 +41,8 @@ void MainWindow::CreateOpenFileTool() {
 }
 
 void MainWindow::onToolClicked() {
+    QString file_nm = QFileDialog::getOpenFileName(this);
 
+    CreateOpenGlWidget(file_nm);
 }
 
